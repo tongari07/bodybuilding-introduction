@@ -1,5 +1,6 @@
 import 'nprogress/nprogress.css'
 
+import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
 import nprogress from 'nprogress'
 import { useEffect } from 'react'
@@ -15,7 +16,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     nprogress.done()
   })
 
-  return <Component {...pageProps} />
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  })
+
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
 
 export default MyApp

@@ -58,7 +58,7 @@ module.exports = {
   overrides: [
     // 特定のパターンだけ一部ルールを除外する
     {
-      files: ['src/pages/**/*.tsx'], // pagesのdefault exportは仕方ないので除外
+      files: ['src/pages/**/*.tsx', 'src/pages/**/*.ts'], // pagesのdefault exportは仕方ないので除外
       rules: { 'import/no-default-export': 'off' },
     },
     {
