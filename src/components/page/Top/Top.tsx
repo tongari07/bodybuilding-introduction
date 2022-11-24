@@ -1,3 +1,4 @@
+import { Stack } from '@mui/material'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
@@ -45,8 +46,8 @@ export const Top = () => {
   })
 
   return (
-    <>
-      <Carousel height="700px" autoPlay={false}>
+    <Stack spacing={8}>
+      <Carousel height="60vh" autoPlay={false}>
         {players
           ?.sort((a, b) => {
             return a.orderNumber - b.orderNumber
@@ -56,6 +57,6 @@ export const Top = () => {
           })}
       </Carousel>
       <YellArea texts={yellTexts} />
-    </>
+    </Stack>
   )
 }
