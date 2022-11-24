@@ -16,23 +16,24 @@ export const Yell = () => {
     setIsOpenBackdrop(true)
     setTimeout(() => {
       return setIsOpenBackdrop(false)
-    }, 2000)
-  }, [])
-
-  useEffect(() => {
-    return setYells(getRandomYells(10))
+    }, 1000)
   }, [])
 
   const resetYells = useCallback(() => {
-    return setYells(getRandomYells(10))
+    return setYells(getRandomYells(4))
   }, [])
+
+  useEffect(() => {
+    return resetYells()
+  }, [resetYells])
 
   const sendYell = useCallback(
     async (yell: string) => {
       openBackdrop()
+      resetYells()
       await supabase.from('yells').insert({ yell })
     },
-    [openBackdrop]
+    [openBackdrop, resetYells]
   )
 
   const sendRandomYell = useCallback(async () => {
