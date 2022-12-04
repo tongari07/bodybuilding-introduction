@@ -1,50 +1,17 @@
 import { Stack } from '@mui/material'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
-import useSWR from 'swr'
 
 import { YellArea } from '@/components/ui/YellArea/YellArea'
-import type { Player } from '@/pages/api/players'
-import type { Yell } from '@/pages/api/yells'
+import { useYellText } from '@/hooks/useYellText'
+import type { Player } from '@/lib/fetcher'
 
-export const Top = () => {
-  const fetcher = (url: string) => {
-    return fetch(url).then((res) => {
-      return res.json()
-    })
-  }
+type TopPresenterProps = {
+  players?: Player[] | undefined
+  yellTexts: string[]
+}
 
-  const { data: players } = useSWR<Player[]>('/api/players', fetcher)
-
-  const intervalRef = useRef<NodeJS.Timer | null>(null)
-  const start = () => {
-    if (intervalRef.current !== null) return
-    intervalRef.current = setInterval(() => {
-      setYellTexts((current) => {
-        current.pop()
-        return current
-      })
-    }, 10000)
-  }
-
-  const [yellTexts, setYellTexts] = useState<string[]>([])
-
-  useSWR<Yell[]>('/api/yells', fetcher, {
-    refreshInterval: 3000,
-    onSuccess: (data) => {
-      setYellTexts((current) => {
-        return [
-          ...data.map((y) => {
-            return y.yell
-          }),
-          ...current,
-        ]
-      })
-      start()
-    },
-  })
-
+const TopPresenter: React.FC<TopPresenterProps> = ({ players, yellTexts }) => {
   return (
     <Stack spacing={8}>
       <Carousel height="60vh" autoPlay={false}>
@@ -59,4 +26,14 @@ export const Top = () => {
       <YellArea texts={yellTexts} />
     </Stack>
   )
+}
+
+type TopProps = {
+  players?: Player[] | undefined
+}
+
+export const Top: React.FC<TopProps> = ({ players }) => {
+  const { yellTexts } = useYellText()
+
+  return <TopPresenter players={players} yellTexts={yellTexts} />
 }
