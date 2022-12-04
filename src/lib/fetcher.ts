@@ -41,14 +41,16 @@ export const yellFetcher = async (): Promise<Yell[]> => {
     yells.data?.map<Yell>(({ id, yell }) => {
       return { id, yell }
     }) || []
-  await supabase
-    .from('yells')
-    .update({ subscribed: true })
-    .in(
-      'id',
-      data.map((y) => {
-        return y.id
-      })
-    )
+  if (data.length > 0) {
+    await supabase
+      .from('yells')
+      .update({ subscribed: true })
+      .in(
+        'id',
+        data.map((y) => {
+          return y.id
+        })
+      )
+  }
   return data
 }
