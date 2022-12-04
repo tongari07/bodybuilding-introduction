@@ -6,12 +6,12 @@ import { YellArea } from '@/components/ui/YellArea/YellArea'
 import { useYellText } from '@/hooks/useYellText'
 import type { Player } from '@/lib/fetcher'
 
-type TopPresenterProps = {
+type TopPagePresenterProps = {
   players?: Player[] | undefined
   yellTexts: string[]
 }
 
-const TopPresenter: React.FC<TopPresenterProps> = ({ players, yellTexts }) => {
+const TopPagePresenter: React.FC<TopPagePresenterProps> = ({ players, yellTexts }) => {
   return (
     <Stack spacing={8}>
       <Carousel height="60vh" autoPlay={false}>
@@ -28,12 +28,12 @@ const TopPresenter: React.FC<TopPresenterProps> = ({ players, yellTexts }) => {
   )
 }
 
-type TopProps = {
+type TopPageProps = {
   players?: Player[] | undefined
 }
 
-export const Top: React.FC<TopProps> = ({ players }) => {
+export const TopPage: React.FC<TopPageProps> = ({ players }) => {
   const { yellTexts } = useYellText()
 
-  return <TopPresenter players={players} yellTexts={yellTexts} />
+  return <TopPagePresenter players={players} yellTexts={yellTexts} />
 }

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import useSWR from 'swr'
 
-import { Top } from '@/components/page/Top/Top'
+import { TopPage } from '@/components/page/TopPage/TopPage'
 import type { Player } from '@/lib/fetcher'
 import { playerFetcher } from '@/lib/fetcher'
 
@@ -9,10 +9,10 @@ type Props = {
   fallbackData: Player[]
 }
 
-const TopPage: NextPage<Props> = ({ fallbackData }) => {
+const Top: NextPage<Props> = ({ fallbackData }) => {
   const { data } = useSWR('/api/players', playerFetcher, { fallbackData })
 
-  return <Top players={data} />
+  return <TopPage players={data} />
 }
 
 export const getStaticProps = async () => {
@@ -25,4 +25,4 @@ export const getStaticProps = async () => {
   }
 }
 
-export default TopPage
+export default Top

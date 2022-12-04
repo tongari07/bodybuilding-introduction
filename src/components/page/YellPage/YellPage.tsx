@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { getRandomYell, getRandomYells } from '@/utils/yells'
 
-export const Yell = () => {
+export const YellPage: React.FC = () => {
   const [yells, setYells] = useState<string[]>([])
 
   const [isOpenBackdrop, setIsOpenBackdrop] = useState(false)

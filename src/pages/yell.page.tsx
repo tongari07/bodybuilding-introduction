@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 
-import { Yell } from '@/components/page/Yell/Yell'
+import { YellPage } from '@/components/page/YellPage/YellPage'
 
-const YellPage: NextPage = () => {
-  return <Yell />
+const Yell: NextPage = () => {
+  return <YellPage />
 }
 
-export default YellPage
+export default Yell
