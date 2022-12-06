@@ -18,7 +18,12 @@ export const YellArea: React.FC<YellToastProps> = ({ texts }) => {
         })}
       </Stack>
       <Box style={{ position: 'relative', height: '40vh', width: '500px' }}>
-        <Image alt="yells" src="/yells.png" layout="fill" objectFit="contain" />
+        <Image
+          alt="yells"
+          src="https://res.cloudinary.com/dlaz5urbm/image/upload/c_scale,w_1200/v1670175673/yells_bumiwj.webp"
+          layout="fill"
+          objectFit="contain"
+        />
       </Box>
     </Stack>
   )

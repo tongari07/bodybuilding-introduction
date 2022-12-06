@@ -70,7 +70,12 @@ export const YellPage: React.FC = () => {
         </Stack>
       </Stack>
       <Backdrop open={isOpenBackdrop}>
-        <Image alt="yell" src="/yell.png" layout="fill" objectFit="contain" />
+        <Image
+          alt="yell"
+          src="https://res.cloudinary.com/dlaz5urbm/image/upload/v1670175672/yell_gzee8b.webp"
+          layout="fill"
+          objectFit="contain"
+        />
       </Backdrop>
     </>
   )
